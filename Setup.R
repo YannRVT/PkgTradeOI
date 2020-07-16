@@ -18,6 +18,9 @@ my_description<-list("Title" = "TradeOI R package",
 create_package(path, my_description, open=FALSE)
 
 #Ajout data
+product<-read.csv("/Users/yannrivallant/Documents/Package/PkgTradeOI/TradeOI/data/product.csv", header=TRUE)
+revision<-read.csv("/Users/yannrivallant/Documents/Package/PkgTradeOI/TradeOI/data/revision.csv", header=TRUE)
+trade<-read.csv("/Users/yannrivallant/Documents/Package/PkgTradeOI/TradeOI/data/trade.csv", header=TRUE, sep = ";")
 setwd("/Users/yannrivallant/Documents/Package/PkgTradeOI/TradeOI/")
 usethis::use_data(product)
 usethis::use_data(revision)
