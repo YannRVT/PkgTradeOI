@@ -1,0 +1,15 @@
+Package: TradeOI
+Title: TradeOI R package
+Version: 1.0
+Authors@R: 
+    person(given = "Yann",
+           family = "Rivallant",
+           role = c("aut", "cre"),
+           email = "yrivallant@intracen.org")
+Description: Some functions to compile correctly the TradeOI
+    app.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.0.0
