@@ -29,3 +29,8 @@ usethis::use_data(trade)
 #generer la documentation
 setwd(path)
 document()
+
+#Compiler
+
+setwd(path)
+build(, quiet=T)
