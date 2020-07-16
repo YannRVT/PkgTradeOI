@@ -1,3 +1,4 @@
+#Creation de base
 if(!require(devtools)){install.packages("devtools")}
 if(!require(usethis)){install.packages("usethis")}
 if(!require(roxygen2)){install.packages("roxygen2")}
@@ -15,3 +16,4 @@ my_description<-list("Title" = "TradeOI R package",
 )
 
 create_package(path, my_description, open=FALSE)
+
