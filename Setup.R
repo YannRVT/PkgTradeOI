@@ -3,7 +3,7 @@ if(!require(devtools)){install.packages("devtools")}
 if(!require(usethis)){install.packages("usethis")}
 if(!require(roxygen2)){install.packages("roxygen2")}
 
-mydir <- "/Users/yannrivallant/Documents/Package/PkgTradeOI/"
+mydir <- "/Users/yannrivallant/Documents/Package/PkgTradeOI"
 mypackage <- "TradeOI"
 path <- file.path(mydir, mypackage)
 unlink(path, recursive=TRUE)
@@ -17,3 +17,14 @@ my_description<-list("Title" = "TradeOI R package",
 
 create_package(path, my_description, open=FALSE)
 
+#Ajout data
+setwd("/Users/yannrivallant/Documents/Package/PkgTradeOI/TradeOI/")
+usethis::use_data(product)
+usethis::use_data(revision)
+usethis::use_data(trade)
+
+
+
+#generer la documentation
+setwd(path)
+document()
