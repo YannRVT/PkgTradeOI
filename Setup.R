@@ -26,8 +26,6 @@ usethis::use_data(product)
 usethis::use_data(revision)
 usethis::use_data(trade)
 
-
-
 #generer la documentation
 setwd(path)
 document()
