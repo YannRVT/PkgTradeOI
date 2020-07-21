@@ -1,0 +1,172 @@
+---
+output: github_document
+---
+
+
+## **User guide Trade OI** 
+
+##### *Version 2.4 - May 2020*
+
+![ITC logo](www/logo.png)
+
+### **Input**
+
+At first, parameters have to be customized to your own needs. This tells the computer where to get data, which flow and time period to analyse and which type of indices will be computed.
+
+**You need to upgrade your revision table and product table each time there is a modification.**
+
+#### **Datasets selection**
+
+Three datasets are mandatory to compute trade indices (Trade dataset, Product table and Revision table. You can choose the separator (comma, semicolon and tab), and you can decide if the first row is your name's variable or not with the checkbox (Header). 
+
+
+You need to have a dot to separate decimals. There is no flow variable in the program and therefore the variables for values, quantities, and quantity units are allocated by the user to the export or import side. 
+
+
+All variables detailed below are the minimum mandatory.
+
+![Variable selection](www/ds_selection.JPG)
+
+
+#### *Input trade dataset*
+
+This table contains all trade data. It contains a minimum of 7 variables. The type of your variable are not importan, the application transform automatically when your load your data.
+
+Reporter variable (character): containing the reporting countries (code or label) in the input dataset.
++ Partner variable (character): containing partner countries (code or label) in the input dataset
++ Product_variable (character): containing products (name or code) in the input dataset
++ Import or Export quantity unit (character):containing imported or exported quantity units in the input dataset
++ Time variable (character): containing time period in the input dataset. the format of the time variable has to be : YYYY for yearly data // YYYYQ for quarterly data // and YYYYMM for monthly data
++ Trade Import or Export Value (numeric): containing imported or exported values in the input dataset
++ Trade Import or Export Quantity (numeric): containing imported or exported quantities in the input dataset
+
+![Variable selection](www/trade.png)
+
+
+#### *Product table*
+
+This reference table details all product codes and their history by using a flag to detail modifications due to the Harmonized System (HS) revisions.
+
++ Product code (character): This variable/field contains products, it has to be in the same format as the input dataset
++ Product revision flag (character): The Harmonized System (HS) classification has been revised in 1996, in 2002, in 2007 and in 2012. The length of this variable (4 characters) corresponds to the number of HS revisions. For each revision, the corresponding character is set to 1 if the product code does not change, 0 if the product code is removed and 2 if the product code is reallocated.
+
+![Variable selection](www/product.png)
+
+
+#### *Revision table*
+
+This table contains the HS revision applied by reporting country per year. In this file, the three variable names have to be REPORTER_CD, year and class. The modification of the variable names can generate an error in the program.
+
++ Reporter variable (character): The variable name has to be 'REPORTER_CD' and in the same format as the reporter variable in the input dataset.
++ year (numeric): The variable name has to be 'year'
++ revision (character): The variable name has to be 'class' HS revision number (e.g.: H1, H2...)
+
+![Variable selection](www/revision.png)
+
+
+#### **Variable choice**
+
+After loading your data, drop-down lists appear on the right of your screen.
+
+You need to choose what variable of your dataset is the right variable in function of the contain of your variables (for example : Your variable Product names prod, you need to choose prod in the drop-down list Product variable name).
+
+**WARNING** : If you want to work on export/import you have to select the corresponding variables of your choice. OR you have to filter your dataset before loading it into TradeOI. 
+
+![Variable selection](www/var_selection.JPG)
+
+
+#### **Allowed percentage of missing data (NA)**
+
+Thanks to a control bar, you can fix the percentage of observations that can be missing on each series over the period of time. A series corresponds to the period of time selected for one product, one reporting country, one partner country and one quantity unit. Series with more than the selecting percentage of missing values are not taken into account in the detection of outliers as well as in the computation of indices.
+
+
+#### **Formating indices**
+
+The indices are firstly calculated at the most detailed level and then aggregated according to parameters chosen in this section.
+
+
+#### *Time breakdown and selection*
+
+##### <u>Time Breakdown</u>
+
+With this parameter you can choose if you want to compute indices on a yearly, quarterly or monthly basis.
+
+##### <u>Time Selection</u>
+
+This parameter will help you to narrow the time selection in your input dataset. You can directly type the date in the format YYYY/MM or select it on the calendar.
+
+*WARNING: Please make sure the date range parameter follows the time breakdown logic. (e.g: if time breakdown is quarterly, date should start with the first month of a quarter and end with the last month of a quarter)*
+
+
+#### *Variables Breakdown*
+
+##### <u>Breakdown of Products</u>
+
+The breakdown of the product variable is HS related. You can choose at which level of product aggregation you want to compute indices.
+
+By selecting **Tariff Line** you select the most disaggregated level of computation. HS2, HS4 and HS6 will compute indices by product respectively at HS 2 digit level, HS 4-digit level and HS 6-digit level. **All Aggregated** parameter compute global indices at the most aggregated level through the period of time selected with previous parameter.
+
+##### <u>Breakdown of Reporters and Partners variables</u>
+
+for this parameter area, you can tick or untick the boxes depending on whether you want or you do not want to aggregate the indices in the reporter variable or partner variable. If there is a partner 'world' in the input dataset, you need to be careful. There is a risk of double counting the data if you select the option 'aggregated on partner variable'.
+
+#### *Which do you want to perform?*
+
+On the right of your screen you can choose what do you want to perform. By default all the process are check, but you can choose to compute just outliers or indices.
+
++ Uncheck Unstable HS revision, to use all the data even the data with the wrong revision
++ Uncheck Delete Heterogenious time series, to keep the heterogenious series for the calculations
++ Uncheck Delete Outliers, for not doing the detection of outliers
++ Uncheck Compute Indices, for not doing the calculations of indices
+
+![Choose what you want to perform](www/whichdoyouwant.JPG)
+
+### **Computation**
+
+Once all parameters are filled out, to run the program, click the button 'Run Analysis' and then the page changes automatically to the analysis page's. The program running
+
+### **Output**
+
+The program provides users with different tables corresponding to specific outputs. All the tables are available by clicking on the tabs at the top of the page.
+
+#### **Report table**
+This table is important. It provides an overview of all events, errors or warnings faced during the program execution. It is, therefore, important to consult this table before analysing the results.
+
+#### **Input Dataset**
+Outliers
+This table contains all detected outliers.
+
+##### **Method**
+After dealing with the missing observations, outliers have to be detected for values, quantities and unit values. In order to stabilize variances and perform a more accurate outlier detection, outliers are detected on the log-transformed values, quantities and unit values.
+
+Firstly we decide which outliers test to use. This decision is based on the hypothesis of the central limit theorem. If there are more than 30 observations per series, we use a robust regression technique with M-estimators (a generalization of the maximum likelihood method). If not, we will use the Z-modified method. In both cases calculations are performed for each reporting country, partner country and product (at the tariff line level). ). A quantity is detected as outlier if there is an outlier in quantity and in unit value. A value is detected as an outlier if there is an outlier in value and in unit value.
+
+#### **Heterogeneous Series**
+This table summarizes all heterogeneous time series detected.
+
+##### **Method**
+For yearly, quarterly and monthly time series, after removing outliers, a test of homogeneity is performed on unit values. This test is based on United Nations Statistics Division (UNSD) methods. We calculate the Relative Interquartile Range (RIQ) and the Relative Standard Deviation (RSD).
+
+Time series are considered homogeneous if RIQ < 2 and RSD < 1.75. Time series are deleted if they are not sufficiently homogeneous.
+
+Read more on: http://css.escwa.org.lb/sd/1153/document.pdf
+
+#### **Indices Table**
+Depending on the parameters selected, fixed-base indices or chained indices are calculated. The methodologies to compute indices are Laspeyres (quantity and unit value), Paasche (quantity and unit value), Fisher (quantity and unit value) and indices on values which are Paasche unit value indices multiplied by Laspeyres quantity indices.
+
+The indices are firstly calculated at the most detailed level. From this first level, indices can be broken down by different variables customized by the user or additional variables available in the input dataset as specified in the parameters.
+
+#### **Cover Rate**
+The program also indicates the trade value taken into account in the indices computation. This table is a summary of the whole process with the trade value taken into account at the different stage of the computation. The trade value taken as reference to compute the percentage of coverage is the aggregation of all values over the selected period for the selected parameters.
+
+#### **Graph indices**
+
+You can see on the graph windows a plot for product indices.
+
+![Graph indices](www/graph.png)
+
+Contact us by email or phone:
+
+> Mail: marketanalysis@intracen.org
+
+> Telephone: +41 (0) 22 730 05 40

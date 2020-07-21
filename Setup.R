@@ -30,7 +30,11 @@ usethis::use_data(trade)
 setwd(path)
 document()
 
-#Compiler
+#Compiler et installer
 
 setwd(path)
 build(, quiet=T)
+install()
+
+library(TradeOI)
+data("product")

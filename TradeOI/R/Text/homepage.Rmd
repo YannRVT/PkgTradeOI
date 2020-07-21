@@ -1,0 +1,33 @@
+---
+output: github_document
+---
+
+
+## **Trade OI** 
+
+### ITC software to detect outliers, heterogenous series and calculate indices in unit values
+
+##### *Version 2.4 - May 2020*
+
+![ITC logo](www/logo.png)
+
+Welcome on the ITC application developed by the Trade Market Intelligence (TMI) section.
+
+There are several parts in this application.
+
++ The first is the import of your data (trade data, product table and revision table).
+
++ A second part with the parameters you will have to determine to calculate what you need.
+
++ Then one last one with the results of your request in the form of an exportable data table and graph.
+
+
+If you have any questions, check out the "**Help**" section. 
+
+There are many explanations on how the application works.
+In case the answer is not present you can contact the service managing the application by email or phone.
+
+
+> Mail: marketanalysis@intracen.org
+
+> Telephone: +41 (0) 22 730 05 40
