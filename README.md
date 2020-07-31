@@ -1,4 +1,3 @@
 # PkgTradeOI
-Repository for TradeOI app
 
-New line
+Some functions to create a standalone version of TradeOI Shiny app.
