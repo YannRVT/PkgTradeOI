@@ -4,12 +4,14 @@
 \alias{out_heterogeneous1}
 \title{Function to delete all the heterogenous time series}
 \usage{
-out_heterogeneous1(input_dataset, empty_parameter)
+out_heterogeneous1(input_dataset, empty_parameter, checkbox2)
 }
 \arguments{
 \item{input_dataset}{last dataset}
 
 \item{empty_parameter}{empty data}
+
+\item{checkbox2}{compute "delete heterogenious time series}
 }
 \description{
 Function to delete all the heterogenous time series

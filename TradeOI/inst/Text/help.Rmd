@@ -5,9 +5,9 @@ output: github_document
 
 ## **User guide Trade OI** 
 
-##### *Version 2.4 - May 2020*
+##### *Version 3.1 - August 2020*
 
-![ITC logo](www/logo.png)
+![ITC logo](img/logo.png)
 
 ### **Input**
 
@@ -25,7 +25,7 @@ You need to have a dot to separate decimals. There is no flow variable in the pr
 
 All variables detailed below are the minimum mandatory.
 
-![Variable selection](www/ds_selection.JPG)
+![Variable selection](img/ds_selection.JPG)
 
 
 #### *Input trade dataset*
@@ -40,7 +40,7 @@ Reporter variable (character): containing the reporting countries (code or label
 + Trade Import or Export Value (numeric): containing imported or exported values in the input dataset
 + Trade Import or Export Quantity (numeric): containing imported or exported quantities in the input dataset
 
-![Variable selection](www/trade.png)
+![Variable selection](img/trade.png)
 
 
 #### *Product table*
@@ -50,7 +50,7 @@ This reference table details all product codes and their history by using a flag
 + Product code (character): This variable/field contains products, it has to be in the same format as the input dataset
 + Product revision flag (character): The Harmonized System (HS) classification has been revised in 1996, in 2002, in 2007 and in 2012. The length of this variable (4 characters) corresponds to the number of HS revisions. For each revision, the corresponding character is set to 1 if the product code does not change, 0 if the product code is removed and 2 if the product code is reallocated.
 
-![Variable selection](www/product.png)
+![Variable selection](img/product.png)
 
 
 #### *Revision table*
@@ -61,7 +61,7 @@ This table contains the HS revision applied by reporting country per year. In th
 + year (numeric): The variable name has to be 'year'
 + revision (character): The variable name has to be 'class' HS revision number (e.g.: H1, H2...)
 
-![Variable selection](www/revision.png)
+![Variable selection](img/revision.png)
 
 
 #### **Variable choice**
@@ -72,7 +72,7 @@ You need to choose what variable of your dataset is the right variable in functi
 
 **WARNING** : If you want to work on export/import you have to select the corresponding variables of your choice. OR you have to filter your dataset before loading it into TradeOI. 
 
-![Variable selection](www/var_selection.JPG)
+![Variable selection](img/var_selection.JPG)
 
 
 #### **Allowed percentage of missing data (NA)**
@@ -112,18 +112,44 @@ for this parameter area, you can tick or untick the boxes depending on whether y
 
 #### *Which do you want to perform?*
 
-On the right of your screen you can choose what do you want to perform. By default all the process are check, but you can choose to compute just outliers or indices.
+On the top right of your screen you can choose what do you want to perform. By default all the process are check, but you can choose to compute just outliers or indices.
 
 + Uncheck Unstable HS revision, to use all the data even the data with the wrong revision
-+ Uncheck Delete Heterogenious time series, to keep the heterogenious series for the calculations
-+ Uncheck Delete Outliers, for not doing the detection of outliers
++ Uncheck Delete Heterogeneous time series, to keep the heterogeneous series for the calculations
 + Uncheck Compute Indices, for not doing the calculations of indices
 
-![Choose what you want to perform](www/whichdoyouwant.JPG)
+![Choose what you want to perform](img/whichdoyouwant.JPG)
+
+#### *Which do you want to perform for outliers?*
+
+On the top right of your screen you can choose what do you want to perform for outliers computation. By default the first process are check "Detect and delete", but you can choose to compute what you want.
+There is only one check possible, but if you want to test different computation you can launch the process as many times as you like.
+
++ Detect and delete; is to detect outliers and delete them to compute indices
++ Detect but compute indices with them; is to detect outliers but keep it in the file to compute indices
++ Detect and replace by mean of nearest neighbours; is to detect outliers and replace them by mean of nearest neighbours methodology
++ Detect and replace by robust regression; is to detect outliers and replace them by robust regression methodology
++ No detection; is to do nothing for outliers
+
+![Choose what you want to perform for outliers](img/Which_outliers.PNG)
+
+#### *Which product?*
+
+On the bottom right of your screen you can choose which product you want to analyse, this option is not necessary but if your computer is not powerful it is better to choose this option.
+You can select multiple product.
+
+![Choose product](img/Which_product.PNG)
+
+#### *Which partner?*
+
+On the bottom right of your screen you can choose which partner you want to analyse, this option is not necessary but if your computer is not powerful it is better to choose this option.
+You can select multiple product.
+
+![Choose partner](img/Which_partner.PNG)
 
 ### **Computation**
 
-Once all parameters are filled out, to run the program, click the button 'Run Analysis' and then the page changes automatically to the analysis page's. The program running
+Once all parameters are filled out, to run the program, click the button '**Run Analysis**' and then the page changes automatically to the analysis page's. The program running
 
 ### **Output**
 
@@ -132,7 +158,7 @@ The program provides users with different tables corresponding to specific outpu
 #### **Report table**
 This table is important. It provides an overview of all events, errors or warnings faced during the program execution. It is, therefore, important to consult this table before analysing the results.
 
-#### **Input Dataset**
+#### **Outliers dataset**
 Outliers
 This table contains all detected outliers.
 
@@ -140,6 +166,19 @@ This table contains all detected outliers.
 After dealing with the missing observations, outliers have to be detected for values, quantities and unit values. In order to stabilize variances and perform a more accurate outlier detection, outliers are detected on the log-transformed values, quantities and unit values.
 
 Firstly we decide which outliers test to use. This decision is based on the hypothesis of the central limit theorem. If there are more than 30 observations per series, we use a robust regression technique with M-estimators (a generalization of the maximum likelihood method). If not, we will use the Z-modified method. In both cases calculations are performed for each reporting country, partner country and product (at the tariff line level). ). A quantity is detected as outlier if there is an outlier in quantity and in unit value. A value is detected as an outlier if there is an outlier in value and in unit value.
+
+You can delete, keep, replace them or do nothing.
+
+If you choose to replace outliers by an imputation you will have this type of table.
+For each unit value, quantity and value you have two columns:
+
++ one for the original
+
++ one for the replacement
+
+If you choose an other option, the "**replacements**" columns disappears.
+
+![Outliers table](img/outliers.PNG)
 
 #### **Heterogeneous Series**
 This table summarizes all heterogeneous time series detected.
@@ -161,9 +200,20 @@ The program also indicates the trade value taken into account in the indices com
 
 #### **Graph indices**
 
-You can see on the graph windows a plot for product indices.
+You can see on the graph windows an interactive plot for product indices.
+On the top you can choose by three different combobox:
 
-![Graph indices](www/graph.png)
++ first one; choose the product code
+
++ second one; partner code (do not forget to uncheck "Aggregated on Partner variable" in parameters)
+
++ third one; reporter code (do not forget to uncheck "Aggregated on Reporter variable" in parameters)
+
+The plot is interactive, you can uncheck and keep only the type of indices you want, and click on each point to see the exact data.
+
+<img src="img/graph.PNG" width:100%>
+
+And just below the graph, there is a table with all the product and data use to create the graph.
 
 Contact us by email or phone:
 

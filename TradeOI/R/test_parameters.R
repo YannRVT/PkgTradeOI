@@ -20,6 +20,9 @@
 #' @param indices_type indices choose
 #' @param agr_partner aggregate or not on partner
 #' @param year_to_date year to date or not
+#' @param checkbox1 compute "unstable HS revision
+#' @param checkbox2 compute "delete heterogenious time series
+#' @param checkbox3 compute "indice"
 #'
 #' @import filehash
 #' @import sqldf
@@ -67,7 +70,11 @@ test_parameters1 <- compiler::cmpfun(test_parameters <- function(
   date_range,
   indices_type,
   agr_partner,
-  year_to_date)
+  year_to_date,
+  checkbox1,
+  checkbox2,
+  checkbox3
+)
 {
 
   print("Staring computation")
@@ -78,7 +85,7 @@ test_parameters1 <- compiler::cmpfun(test_parameters <- function(
   start_time <- as.character(Sys.time())
   log <- data.table(step = "Started at", note = start_time, type="info" , stringsAsFactors = F)
 
-  if ((input$checkbox1 == FALSE) && (input$checkbox2 == FALSE) && (input$checkbox3 == FALSE)){
+  if ((checkbox1 == FALSE) && (checkbox2 == FALSE) && (checkbox3 == FALSE)){
     shinyalert("Warning!", "You cannot choose nothing to compute", type = "error", closeOnClickOutside = TRUE)
 
     log1 <- data.table(step = "Error", note = paste("Choose on action to compute in the parameters section"), type="error"  , stringsAsFactors = F)

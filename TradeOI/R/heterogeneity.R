@@ -2,6 +2,8 @@
 #'
 #' @param input_dataset last dataset
 #' @param empty_parameter empty data
+#' @param checkbox2 compute "delete heterogenious time series
+#' @param radio_outliers define the type of computation for outliers
 #'
 #' @import filehash
 #' @import sqldf
@@ -25,17 +27,19 @@
 
 heterogeneity1 <- compiler::cmpfun(heterogeneity <- function(
   input_dataset,
-  empty_parameter){
+  empty_parameter,
+  checkbox2,
+  radio_outliers){
 
   print("Starting heterogeneity")
 
   if(empty_parameter == 1){
     data <- data.table()
 
-  }else if (input$checkbox2 == TRUE){
+  }else if (checkbox2 == TRUE){
     print("Starting heterogeneity else")
 
-    if(input$radio_outliers == 3 | input$radio_outliers == 4){
+    if(radio_outliers == 3 | radio_outliers == 4){
       input_dataset$VALUE = ifelse(!is.na(input_dataset$FG_OUTLIERS),input_dataset$VALUE2, input_dataset$VALUE)
       input_dataset$UNIT_VALUE = ifelse(!is.na(input_dataset$FG_OUTLIERS),input_dataset$UNIT_VALUE2, input_dataset$UNIT_VALUE)
       input_dataset$QUANTITY = ifelse(!is.na(input_dataset$FG_OUTLIERS),input_dataset$QUANTITY2, input_dataset$QUANTITY)

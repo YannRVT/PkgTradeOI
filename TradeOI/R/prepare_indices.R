@@ -6,6 +6,7 @@
 #' @param date_to_date date to date or not
 #' @param date_range month/year/quarter
 #' @param empty_parameter empty data
+#' @param checkbox3 compute "indice"
 #'
 #' @import filehash
 #' @import sqldf
@@ -33,13 +34,14 @@ prepare_indices1 <- compiler::cmpfun(prepare_indices <- function(
   indices_bc,
   date_to_date,
   date_range,
-  empty_parameter){
+  empty_parameter,
+  checkbox3){
 
   print("Starting prepare_indices")
   if(empty_parameter == 1){
     data3 <- data.table()
   }
-  else if (input$checkbox3 == TRUE){
+  else if (checkbox3 == TRUE){
 
     year_inf <- substr(as.character(str_split(date_range," ")[1]),1,4)
 

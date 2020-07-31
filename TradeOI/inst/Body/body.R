@@ -2,24 +2,24 @@ tabItems(
 
   ######################################
   # Tab  Summary how to use contents
-  source("R/Body/home.R",local=T)$value,
+  source("inst/Body/home.R",local=T)$value,
   ######################################
 
   ######################################
   # Tab  Data Preparation Tab Contents
-  source("R/Body/data_preparation.R",local=T)$value,
+  source("inst/Body/data_preparation.R",local=T)$value,
   ######################################
 
   ######################################
-  source("R/Body/data_trade.R",local=T)$value,
+  source("inst/Body/data_trade.R",local=T)$value,
   ######################################
 
   ######################################
-  source("R/Body/data_product.R",local=T)$value,
+  source("inst/Body/data_product.R",local=T)$value,
   ######################################
 
   ######################################
-  source("R/Body/data_revision.R",local=T)$value,
+  source("inst/Body/data_revision.R",local=T)$value,
   ######################################
 
 
@@ -29,22 +29,22 @@ tabItems(
 
   ##################################################################################
   ####  Tab Cross-Validtion Training/Splitting Tab Set Contents
-  source("R/Body/parameters.R",local=T)$value,
+  source("inst/Body/parameters.R",local=T)$value,
   ##################################################################################
 
   ##################################################################################
   ####   Results of Analysis Technique
-  source("R/Body/table_analysis.R",local=T)$value,
+  source("inst/Body/table_analysis.R",local=T)$value,
   ##################################################################################
 
  ##################################################################################
  ####   Results of Analysis Technique
- source("R/Body/graph_analysis.R",local=T)$value,
+ source("inst/Body/graph_analysis.R",local=T)$value,
  ##################################################################################
 
   ##################################################################################
   ####   About this App
-  source("R/Body/help.R",local=T)$value
+  source("inst/Body/help.R",local=T)$value
   ##################################################################################
 
 )

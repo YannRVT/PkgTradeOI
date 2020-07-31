@@ -24,7 +24,10 @@ test_parameters1(
   date_range,
   indices_type,
   agr_partner,
-  year_to_date
+  year_to_date,
+  checkbox1,
+  checkbox2,
+  checkbox3
 )
 }
 \arguments{
@@ -67,6 +70,12 @@ test_parameters1(
 \item{agr_partner}{aggregate or not on partner}
 
 \item{year_to_date}{year to date or not}
+
+\item{checkbox1}{compute "unstable HS revision}
+
+\item{checkbox2}{compute "delete heterogenious time series}
+
+\item{checkbox3}{compute "indice"}
 }
 \description{
 Function to verify and create some errors during all the procedure

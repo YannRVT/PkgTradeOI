@@ -3,6 +3,7 @@
 #' @param input_dataset last dataset
 #' @param var_time variable for the time
 #' @param empty_parameter empty data
+#' @param radio_outliers define the type of computation for outliers
 #'
 #' @import filehash
 #' @import sqldf
@@ -27,13 +28,14 @@
 outliers_detection1 <- compiler::cmpfun(outliers_detection <- function(
   input_dataset,
   var_time,
-  empty_parameter){
+  empty_parameter,
+  radio_outliers){
 
   print("Starting outliers_detection")
   if(empty_parameter == 1){
     output <- data.table()
   }
-  else if (input$radio_outliers == 1 | input$radio_outliers == 2 | input$radio_outliers == 3 | input$radio_outliers == 4){
+  else if (radio_outliers == 1 | radio_outliers == 2 | radio_outliers == 3 | radio_outliers == 4){
 
     LOG_V <- ifelse(input_dataset$VALUE!=0,log(input_dataset$VALUE),NA)
     LOG_Q <- ifelse(input_dataset$QUANTITY!=0,log(input_dataset$QUANTITY),NA)

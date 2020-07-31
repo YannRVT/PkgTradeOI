@@ -2,6 +2,7 @@
 #'
 #' @param input_dataset last dataset
 #' @param empty_parameter empty data
+#' @param checkbox2 compute "delete heterogenious time series
 #'
 #' @import filehash
 #' @import sqldf
@@ -25,13 +26,14 @@
 
 out_heterogeneous1 <- compiler::cmpfun(out_heterogeneous <- function(
   input_dataset,
-  empty_parameter){
+  empty_parameter,
+  checkbox2){
 
   print("Starting out_heterogeneous")
   if(empty_parameter == 1){
     input_dataset <- data.table(Info = "No data available in table")
   }
-  else if (input$checkbox2 == TRUE){
+  else if (checkbox2 == TRUE){
 
     primary_key<-strKey("REPORTER_CD", "PRODUCT_CD", "PARTNER_CD", gbl_var_key_add)
     primary_vector<-unlist(strsplit(gsub(" ", "", primary_key, fixed=TRUE), split=","))

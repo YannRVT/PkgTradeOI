@@ -3,6 +3,7 @@
 #' @param input_dataset last dataset
 #' @param pct_missdata % of chosen missing data
 #' @param empty_parameter empty data
+#' @param checkbox1 compute "unstable HS revision
 #'
 #' @import filehash
 #' @import sqldf
@@ -27,7 +28,8 @@
 time_code1 <- compiler::cmpfun(time_code <- function(
   input_dataset,
   pct_missdata,
-  empty_parameter){
+  empty_parameter,
+  checkbox1){
 
   print("Starting time_code")
 
@@ -40,7 +42,7 @@ time_code1 <- compiler::cmpfun(time_code <- function(
     primary_vector<-unlist(strsplit(gsub(" ", "", primary_key, fixed=TRUE), split=","))
 
     print("miss val 1/2")
-    if(input$checkbox1 == TRUE){
+    if(checkbox1 == TRUE){
     input_dataset <- input_dataset[,!(names(input_dataset) %in% c("FG_REVISION", "rev_order_vect"))]}
     else{
       input_dataset <- data.table(input_dataset[,-c("FG_REVISION", "rev_order_vect")])

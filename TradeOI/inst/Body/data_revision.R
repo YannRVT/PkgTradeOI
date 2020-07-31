@@ -8,7 +8,7 @@ tabItem(tabName = "data_revision",
                                    actionButton("Revision", "Revision?")),
                                hr(),
                                hr(),
-                               dataTableOutput("input_revision_table"))
+                               DT::DTOutput("input_revision_table"))
           )
         )
 )

@@ -4,6 +4,7 @@
 #' @param input_dataset_hetero dataset with heterogeneity
 #' @param input_dataset_outliers2 dataset with outliers
 #' @param empty_parameter empty data
+#' @param radio_outliers define the type of computation for outliers
 #'
 #' @import filehash
 #' @import sqldf
@@ -29,14 +30,15 @@ out_outliers1 <- compiler::cmpfun(out_outliers <- function(
   input_dataset_outliers,
   input_dataset_hetero,
   input_dataset_outliers2,
-  empty_parameter){
+  empty_parameter,
+  radio_outliers){
 
   print("Starting out_outliers")
 
   if(empty_parameter == 1){
     output <- data.table(Info = "No data available in table")
 
-    } else if (input$radio_outliers == 1 | input$radio_outliers == 2){
+    } else if (radio_outliers == 1 | radio_outliers == 2){
 
     input_dataset_outliers = input_dataset_outliers %>%
       select(-res_val, -res_uv, -res_qty)
@@ -74,7 +76,7 @@ out_outliers1 <- compiler::cmpfun(out_outliers <- function(
 
 ###############################################################################################################################################
 
-    }else if(input$radio_outliers == 3 | input$radio_outliers == 4){
+    }else if(radio_outliers == 3 | radio_outliers == 4){
 
       input_dataset_outliers = input_dataset_outliers %>%
         select(-res_val, -res_uv, -res_qty)

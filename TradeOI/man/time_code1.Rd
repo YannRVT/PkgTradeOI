@@ -4,7 +4,7 @@
 \alias{time_code1}
 \title{Function to modify and standardize the time variable}
 \usage{
-time_code1(input_dataset, pct_missdata, empty_parameter)
+time_code1(input_dataset, pct_missdata, empty_parameter, checkbox1)
 }
 \arguments{
 \item{input_dataset}{last dataset}
@@ -12,6 +12,8 @@ time_code1(input_dataset, pct_missdata, empty_parameter)
 \item{pct_missdata}{\% of chosen missing data}
 
 \item{empty_parameter}{empty data}
+
+\item{checkbox1}{compute "unstable HS revision}
 }
 \description{
 Function to modify and standardize the time variable

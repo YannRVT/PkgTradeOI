@@ -6,7 +6,6 @@ if(!require(roxygen2)){install.packages("roxygen2")}
 mydir <- "/Users/yannrivallant/Documents/Package/PkgTradeOI"
 mypackage <- "TradeOI"
 path <- file.path(mydir, mypackage)
-unlink(path, recursive=TRUE)
 
 my_description<-list("Title" = "TradeOI R package",
                      "Version" ="1.0",
@@ -22,9 +21,9 @@ product<-read.csv("/Users/yannrivallant/Documents/Package/PkgTradeOI/TradeOI/dat
 revision<-read.csv("/Users/yannrivallant/Documents/Package/PkgTradeOI/TradeOI/data/revision.csv", header=TRUE)
 trade<-read.csv("/Users/yannrivallant/Documents/Package/PkgTradeOI/TradeOI/data/trade.csv", header=TRUE, sep = ";")
 setwd("/Users/yannrivallant/Documents/Package/PkgTradeOI/TradeOI/")
-usethis::use_data(product)
-usethis::use_data(revision)
-usethis::use_data(trade)
+usethis::use_data(product, overwrite = TRUE)
+usethis::use_data(revision, overwrite = TRUE)
+usethis::use_data(trade, overwrite = TRUE)
 
 #generer la documentation
 setwd(path)
@@ -37,4 +36,5 @@ build(, quiet=T)
 install()
 
 library(TradeOI)
-data("product")
+
+TradeOI::run_app()

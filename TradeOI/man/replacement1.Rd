@@ -4,12 +4,14 @@
 \alias{replacement1}
 \title{Function to replace or delete the outliers}
 \usage{
-replacement1(input_dataset, empty_parameter)
+replacement1(input_dataset, empty_parameter, radio_outliers)
 }
 \arguments{
 \item{input_dataset}{last dataset}
 
 \item{empty_parameter}{empty data}
+
+\item{radio_outliers}{define the type of computation for outliers}
 }
 \description{
 Function to replace or delete the outliers

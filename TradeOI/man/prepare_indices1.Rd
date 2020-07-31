@@ -10,7 +10,8 @@ prepare_indices1(
   indices_bc,
   date_to_date,
   date_range,
-  empty_parameter
+  empty_parameter,
+  checkbox3
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ prepare_indices1(
 \item{date_range}{month/year/quarter}
 
 \item{empty_parameter}{empty data}
+
+\item{checkbox3}{compute "indice"}
 }
 \description{
 Function to prepare the data for feature indice

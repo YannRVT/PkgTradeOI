@@ -8,7 +8,8 @@ out_outliers1(
   input_dataset_outliers,
   input_dataset_hetero,
   input_dataset_outliers2,
-  empty_parameter
+  empty_parameter,
+  radio_outliers
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ out_outliers1(
 \item{input_dataset_outliers2}{dataset with outliers}
 
 \item{empty_parameter}{empty data}
+
+\item{radio_outliers}{define the type of computation for outliers}
 }
 \description{
 Function to delete the outliers

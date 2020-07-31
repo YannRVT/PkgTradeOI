@@ -4,7 +4,7 @@
 \alias{chang_rev1}
 \title{Function to check and change the revision}
 \usage{
-chang_rev1(input_dataset, table_revision, empty_parameter)
+chang_rev1(input_dataset, table_revision, empty_parameter, checkbox1)
 }
 \arguments{
 \item{input_dataset}{last dataset}
@@ -12,6 +12,8 @@ chang_rev1(input_dataset, table_revision, empty_parameter)
 \item{table_revision}{revision dataset}
 
 \item{empty_parameter}{empty dataset}
+
+\item{checkbox1}{compute "revision"}
 }
 \description{
 Function to check and change the revision

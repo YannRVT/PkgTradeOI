@@ -12,6 +12,10 @@
 #' @param detected_outliers outliers detected dataset
 #' @param series_hetero series hetero dataset
 #' @param empty_parameter empty data
+#' @param checkbox1 compute "unstable HS revision
+#' @param checkbox2 compute "delete heterogenious time series
+#' @param checkbox3 compute "indice"
+#' @param radio_outliers define the type of computation for outliers
 #'
 #' @import filehash
 #' @import sqldf
@@ -44,7 +48,11 @@ covert_rate1 <- compiler::cmpfun(covert_rate <- function(
   indices_ds,
   detected_outliers,
   series_hetero,
-  empty_parameter){
+  empty_parameter,
+  checkbox1,
+  checkbox2,
+  checkbox3,
+  radio_outliers){
 
   if(empty_parameter == 1){
     output <- data.frame(Info = "No data available in table")}
@@ -67,7 +75,7 @@ covert_rate1 <- compiler::cmpfun(covert_rate <- function(
   data1 <- cbind(Information,Trade_Value_Total,Trade_Value_Total_pct,Series_Number)
 
   ##########################################################################
-  if (input$checkbox1 == TRUE){
+  if (checkbox1 == TRUE){
 
     data_in <- chmt_rev_ds
     Information <- paste("After removing series with unstable HS revision")
@@ -141,7 +149,7 @@ covert_rate1 <- compiler::cmpfun(covert_rate <- function(
 
   ##########################################################################
 
-  if (input$checkbox2 == TRUE){
+  if (checkbox2 == TRUE){
 
     data_in <- chmt_rev_ds
     Information <- paste("After removing series with unstable HS revision")
@@ -182,7 +190,7 @@ covert_rate1 <- compiler::cmpfun(covert_rate <- function(
   primary_key<-strKey("REPORTER_CD", "PRODUCT_CD", "PARTNER_CD", gbl_var_key_add)
   ##########################################################################
 
-  if (input$radio_outliers == 1) {
+  if (radio_outliers == 1) {
 
     data_in <- outliers_ds
     Information <- paste("After removing outliers (Total outliers =", nrow(detected_outliers), ")")
@@ -204,7 +212,7 @@ covert_rate1 <- compiler::cmpfun(covert_rate <- function(
     Information <- paste("No request to withdraw the outliers")
     data6 <- cbind(Information,trade_value,trade_value_pct,nb_series)}
     ##########################################################################
-  if (input$checkbox2 == TRUE) {
+  if (checkbox2 == TRUE) {
 
     data_in <- non_homogeneous_ds
     Information <- paste("After removing heterogeneous series (Total heterogeneous series =", nrow(series_hetero), ")")
@@ -226,7 +234,7 @@ covert_rate1 <- compiler::cmpfun(covert_rate <- function(
     Information <- paste("No request to withdraw the heterogeneous series")
     data7 <- cbind(Information,trade_value,trade_value_pct,nb_series)}
 
-  if (input$checkbox3 == TRUE) {
+  if (checkbox3 == TRUE) {
 
     Information <- paste("After calculating indices")
 

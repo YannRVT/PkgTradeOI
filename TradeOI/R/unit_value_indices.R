@@ -7,6 +7,7 @@
 #' @param date_to_date if date to date is check
 #' @param empty_parameter data empty
 #' @param time_break the chosen date
+#' @param checkbox3 compute "indice"
 #'
 #' @import filehash
 #' @import sqldf
@@ -35,7 +36,8 @@ unit_value_indices1 <- compiler::cmpfun(unit_value_indices <- function(
   var_partner,
   date_to_date,
   empty_parameter,
-  time_break){
+  time_break,
+  checkbox3){
 
   print("Starting unit_value_indices")
 
@@ -43,7 +45,7 @@ unit_value_indices1 <- compiler::cmpfun(unit_value_indices <- function(
     input_dataset  <- data.frame(Info = "No data available in table")
     }
 
-  else if (input$checkbox3 == TRUE){
+  else if (checkbox3 == TRUE){
 
     primary_key<-strKey("REPORTER_CD", "PRODUCT_CD", "PARTNER_CD", gbl_var_key_add)
     primary_vector<-unlist(strsplit(gsub(" ", "", primary_key, fixed=TRUE), split=","))

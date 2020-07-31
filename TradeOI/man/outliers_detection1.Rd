@@ -4,7 +4,7 @@
 \alias{outliers_detection1}
 \title{Function to detect outlier with robust regression and Z-modify}
 \usage{
-outliers_detection1(input_dataset, var_time, empty_parameter)
+outliers_detection1(input_dataset, var_time, empty_parameter, radio_outliers)
 }
 \arguments{
 \item{input_dataset}{last dataset}
@@ -12,6 +12,8 @@ outliers_detection1(input_dataset, var_time, empty_parameter)
 \item{var_time}{variable for the time}
 
 \item{empty_parameter}{empty data}
+
+\item{radio_outliers}{define the type of computation for outliers}
 }
 \description{
 Function to detect outlier with robust regression and Z-modify

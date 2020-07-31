@@ -3,6 +3,7 @@
 #' @param input_dataset last dataset
 #' @param table_revision revision dataset
 #' @param empty_parameter empty dataset
+#' @param checkbox1 compute "revision"
 #'
 #' @import filehash
 #' @import sqldf
@@ -26,14 +27,15 @@
 chang_rev1 <- compiler::cmpfun(chang_rev <- function(
   input_dataset,
   table_revision,
-  empty_parameter){
+  empty_parameter,
+  checkbox1){
 
   print("Staring chang_rev")
 
   if(empty_parameter == 1){
     input_dataset <- data.table(NA)
   }
-  else if (input$checkbox1 == TRUE){
+  else if (checkbox1 == TRUE){
 
     min_time<-min(input_dataset$MONTH_CD)
     max_time<-max(input_dataset$MONTH_CD)

@@ -16,7 +16,11 @@ covert_rate1(
   indices_ds,
   detected_outliers,
   series_hetero,
-  empty_parameter
+  empty_parameter,
+  checkbox1,
+  checkbox2,
+  checkbox3,
+  radio_outliers
 )
 }
 \arguments{
@@ -43,6 +47,14 @@ covert_rate1(
 \item{series_hetero}{series hetero dataset}
 
 \item{empty_parameter}{empty data}
+
+\item{checkbox1}{compute "unstable HS revision}
+
+\item{checkbox2}{compute "delete heterogenious time series}
+
+\item{checkbox3}{compute "indice"}
+
+\item{radio_outliers}{define the type of computation for outliers}
 }
 \description{
 Function to create the covert rate

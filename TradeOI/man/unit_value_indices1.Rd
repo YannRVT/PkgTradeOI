@@ -11,7 +11,8 @@ unit_value_indices1(
   var_partner,
   date_to_date,
   empty_parameter,
-  time_break
+  time_break,
+  checkbox3
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ unit_value_indices1(
 \item{empty_parameter}{data empty}
 
 \item{time_break}{the chosen date}
+
+\item{checkbox3}{compute "indice"}
 }
 \description{
 Function to feature indices

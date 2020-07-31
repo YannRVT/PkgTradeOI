@@ -2,6 +2,7 @@
 #'
 #' @param input_dataset last dataset
 #' @param empty_parameter empty data
+#' @param radio_outliers define the type of computation for outliers
 #'
 #' @import filehash
 #' @import sqldf
@@ -25,26 +26,27 @@
 
 replacement1 = compiler::cmpfun(replacement <- function(
   input_dataset,
-  empty_parameter){
+  empty_parameter,
+  radio_outliers){
 
   print("Starting replacement")
 
   if(empty_parameter == 1){
     data <- data.table()
 
-  }else if(input$radio_outliers == 1){
+  }else if(radio_outliers == 1){
 
     input_dataset <- data.table(input_dataset)
     input_dataset[which(input_dataset$FG_OUTLIERS==1),c("VALUE","QUANTITY","UNIT_VALUE")] <- 0
     final = input_dataset %>%
       select(-LOG_UV, -LOG_V, -LOG_Q, -res_val, -res_uv, -res_qty)
 
-  }else if(input$radio_outliers == 2){
+  }else if(radio_outliers == 2){
 
     final = input_dataset %>%
       select(-res_val, -res_uv, -res_qty)
 
-  }else if(input$radio_outliers == 3){
+  }else if(radio_outliers == 3){
 
     input_dataset = input_dataset %>%
       select(-res_val, -res_uv, -res_qty)
@@ -136,7 +138,7 @@ replacement1 = compiler::cmpfun(replacement <- function(
     }
 
 
-  }else if(input$radio_outliers == 4){
+  }else if(radio_outliers == 4){
 
     final = input_dataset
 
